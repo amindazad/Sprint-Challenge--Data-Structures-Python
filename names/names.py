@@ -71,11 +71,11 @@ duplicates = []  # Return the list of duplicates in this data structure
 #             duplicates.append(name_1)
 
 NameBST1 = BSTNode(names_1[0])
-for name1 in names_1[1:]:
+for name1 in names_1[0:]:
     NameBST1.insert(name1)
 
 NameBST2 = BSTNode(names_2[0])
-for name2 in names_2[1:]:
+for name2 in names_2[0:]:
     NameBST2.insert(name2)
 
 def comparison(name):
