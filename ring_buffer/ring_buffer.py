@@ -52,7 +52,33 @@ class RingBuffer:
         self.buffer = DLL()
 
     def append(self, item):
-        pass
+        #if at max capacity:
+        if len(self.buffer) == self.capacity:
+            #Check if the oldest is the tail:
+            if self.oldest == self.buffer.tail:
+                #Overwrite the value
+                self.oldest.value = item
+                #set the oldest value to the head
+                self.oldest = self.buffer.head
+            #if not the tail:
+            else:
+                #Overwrite the oldest value
+                self.oldest.value = item
+                #Set the oldest to the next Node
+                self.oldest = self.oldest.next
+        #if not at max capacity:
+        else:
+            #Add to the tail
+            self.buffer.add_to_tail(item)
+            #Set as the oldest/tail
+            if self.oldest == None:
+                self.oldest = self.buffer.tail
 
     def get(self):
-        pass
+        buffer_list = []
+        current = self.buffer.head
+
+        while current is not None:
+            buffer_list.append(current.value)
+            current = current.next
+        return buffer_list
