@@ -65,11 +65,24 @@ f.close()
 duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
 
+NameBST1 = BSTNode(names_1[0])
+for name1 in names_1[1:]:
+    NameBST1.insert(name1)
+
+NameBST2 = BSTNode(names_2[0])
+for name2 in names_2[1:]:
+    NameBST2.insert(name2)
+
+def comparison(name):
+    if NameBST2.contains(name):
+        duplicates.append(name)
+        
+NameBST1.for_each(comparison)
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
